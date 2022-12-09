@@ -15,7 +15,7 @@
 
 ---
 
-4주차
+#4주차
 
 > 목적 : 로그인 기능 구현
 
@@ -27,7 +27,7 @@ mysql 에 crypto 등의 기능을 붙여서 안전 로그인 패킷을 구현하
 
 ---
 
-5주차
+#5주차
 
 시행착오가 많아 파일(커밋)에 직접 변화 없음. 작업 후 처음부터 하고를 많이 반복함
 
@@ -37,7 +37,7 @@ mysql 에 crypto 등의 기능을 붙여서 안전 로그인 패킷을 구현하
 
 ---
 
-6주차
+#6주차
 
 12/15 발표
 pc에 서버를 띄우던지
@@ -63,9 +63,9 @@ Function Cost 기능점수 계산해서 넣기?
 
 ---
 
-7주차
+#7주차
 
-12/09
+##12/09
 
 git repository cleanup. 
 
@@ -93,3 +93,14 @@ INSERT INTO coffees (userid, coffeeid) VALUES ('1', '13'),
 
 ```
 
+와 같은 형태로 테이블을 생성
+
+```mysql
+select coffeeid from coffees where userid = 1;
+```
+으로 userid 1 인 사람의 커피목록(13,13,13,,13,15,23)을 받아올 수 있음
+
+```mysql
+select count(*) from coffees where userid = 1;
+```
+으로 userid 1 인 사람의 총 쿼리 횟수를 불러올 수 있음.
