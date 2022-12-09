@@ -63,7 +63,13 @@ Function Cost 기능점수 계산해서 넣기?
 
 ---
 
-7주차, 12/09
+7주차
 
-git repository cleanup
+12/09
+
+git repository cleanup. 
+
+mysql - 웹 연결을 최우선시해, 특히 유저 id와 coffee_id, count 의 query 형태 구현에 집중
+
+mysql insert 과정에서 database를 잘못 지정해 오류 발생, 시간이 다소 
 
