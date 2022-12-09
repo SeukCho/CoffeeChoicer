@@ -71,5 +71,25 @@ git repository cleanup.
 
 mysql - 웹 연결을 최우선시해, 특히 유저 id와 coffee_id, count 의 query 형태 구현에 집중
 
-mysql insert 과정에서 database를 잘못 지정해 오류 발생, 시간이 다소 
+mysql insert 과정에서 database를 잘못 지정해 오류 발생, 시간이 다소 소요됨.
+
+```mysql
+
+CREATE TABLE IF NOT EXISTS coffees (
+  userid int(12) NOT NULL,
+  coffeeid int(12) NOT NULL
+);
+
+INSERT INTO coffees (userid, coffeeid) VALUES ('1', '13'),
+('1', '13'),
+('1', '13'),
+('1', '13'),
+('2', '4'),
+('2', '13'),
+('2', '11'),
+('1', '15'),
+('1', '23')
+;
+
+```
 
