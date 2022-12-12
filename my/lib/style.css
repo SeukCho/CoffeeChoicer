@@ -1,0 +1,84 @@
+@font-face {
+    font-family: 'OTWelcomeRA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+	font-family: 'OTWelcomeRA';
+	color: #332f2f;
+}
+
+h1.title{
+	text-align: center;
+	padding-top: 120px;
+	font-size: 48px;
+}
+
+.main-panel{
+	background-image: url('../image/background/background.png');
+    background-repeat: no-repeat;
+    width: 960px;
+    height: 640px;
+    background-size: 960px 640px;
+}
+
+.slot-panel{	
+    text-align: center;
+}
+
+.box {
+	margin: 0 0 0 40px;
+	display: inline-block;
+	width: 400px;
+	text-align: center;
+}
+
+.slot {
+	width: 120px;
+	height: 220px;
+	overflow: hidden;
+	/* margin: 0px 0 0 140px; */
+	margin: auto;
+}
+
+.slot img{
+	width:120px;
+	height:120px;
+}
+
+.slot img:not(:last-child){
+	margin-bottom: 10px;
+}
+
+.nametag{
+	font-size: 38px;
+	font-weight: bold;
+	margin: 10px 0 0 6px;
+}
+
+.credit p{
+	margin: 20px 50px 0px 0px;
+	font-size: 16px;
+}
+
+.button-panel{
+	/* text-align: center; */
+	margin: -110px 0 0 455px;
+}
+
+.button-panel button{
+	font-family: 'OTWelcomeRA';
+	font-size: 46px;
+	font-weight: bold;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+.button-panel button:disabled{
+	cursor: not-allowed;
+}
+.button-panel button:enabled:hover{
+	color: #766965;
+}
