@@ -146,8 +146,7 @@ app.post('/mychoicer', function(request, response) {
             console.log(data);
         }
     });
-    response.render('alert2', {message: '오늘 마실 커피를 결정했습니다.'});
-    response.end();
+
 });
 
 app.get('/list', function (request, response) { 

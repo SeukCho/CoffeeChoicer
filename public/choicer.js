@@ -36,7 +36,7 @@ function getRandomInt() {
 }
 
 function startAll(){
-    
+    document.getElementById('startAll').disabled = true;
     document.getElementById('selection').disabled = true;
     let obj = $("#char")[0];
     let tasker;
@@ -55,6 +55,7 @@ function startAll(){
             console.log('counter : ',counter);
             if(counter == end){ //원래 end
                 document.getElementById('selection').disabled = false;
+                document.getElementById('startAll').disabled = false;
                 clearInterval(tasker);
             }
             else {
