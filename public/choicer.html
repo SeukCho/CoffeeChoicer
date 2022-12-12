@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class = "main-panel">
-            <h1 class="title">커피 랜덤 초이서</h1>
+            <h1 class="title">커피 랜덤 선택기</h1>
             <div class="slot-panel">
                 <div class="box">
                     <div id="char" class="slot">
@@ -23,6 +23,9 @@
                         <img src="image/coffee/10.png">
                         <img src="image/coffee/11.png">
                         <img src="image/coffee/12.png">
+                        <img src="image/coffee/1.png">
+                        <img src="image/coffee/2.png">
+                        <img src="image/coffee/3.png">
                     </div>
                 <p id="char-name" class="nametag">커피</p>
             </div>
@@ -31,11 +34,30 @@
 
 
     <div class="button-panel">
-        <button id="startAll">추첨</button>
+        <button id="goback">뒤로가기</button>
+        <button id="startAll" >추첨</button>
+        <button id ="selection" disabled>결정</button>
     </div>
     <div class="credit">
         <p>이미지 출처 CHENXIN, Essie,  <a href="https://kor.pngtree.com"> Pngtree.com</a></p>
     </div>
     <script src="choicer.js"></script>
+    <script>
+    $("#selection").click(function() {
+        var coffee = $('.nametag').text();
+        console.log(coffee);
+        $.ajax({
+            url: '/mychoicer',
+            type: 'POST',
+            data: {data:coffee},
+            dataType: 'text'
+        });
+    });
+    </script>
+    <script>
+        $("#goback").click(function() {
+            history.back();
+        })
+    </script>
     </body>
 </html>

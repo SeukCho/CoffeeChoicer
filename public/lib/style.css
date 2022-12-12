@@ -13,6 +13,7 @@ body{
 h1.title{
 	text-align: center;
 	padding-top: 120px;
+	padding-left: 50px;
 	font-size: 48px;
 }
 
@@ -39,7 +40,6 @@ h1.title{
 	width: 120px;
 	height: 220px;
 	overflow: hidden;
-	/* margin: 0px 0 0 140px; */
 	margin: auto;
 }
 
@@ -65,7 +65,7 @@ h1.title{
 
 .button-panel{
 	/* text-align: center; */
-	margin: -110px 0 0 455px;
+	margin: -110px 0 0 320px;
 }
 
 .button-panel button{

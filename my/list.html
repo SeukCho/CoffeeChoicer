@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>Rank</title>
+</head>
+<body>
+  <h1>뽑기 이력</h1>
+	<table width="100%" border="1">
+		<tr>
+			<th>Coffee</th>
+			<th>Username</th>
+		</tr>
+		<% data.forEach(function(item, index) { %>
+		<tr>
+			<td><%= item.coffee %> </td>
+			<td><%= item.username %> </td>
+		</tr>
+		<% }); %>
+	</table>
+	<a href="/"><h1>Home</h1></a>
+</body>
+</html>

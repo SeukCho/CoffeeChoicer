@@ -23,6 +23,7 @@ app.use(session({
     saveUninitialized : true
 }));
 
+
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
@@ -36,7 +37,7 @@ app.get('/', function(request,response, next) {
 
 app.get('/login', function(request, response) {
     if(request.session.loggedin == true) {
-        response.render('alert', {error: 'You are already logged in as ' + request.session.username});
+        response.render('alert', {error: '이미 ' + request.session.username + ' 로 로그인되어 있습니다.'});
     }
     else {
         response.sendFile(path.join(__dirname + '/my/login.html'));
@@ -56,14 +57,13 @@ app.post('/login', function(request, response) {
                 response.end();
             }
             else {
-                response.render('alert', {error: 'Incorrect Username or Password!'});
+                response.render('alert', {error: '이름이나 패스워드가 올바르지 않습니다.'});
                 response.end();
             }
         });
     }
     else {
-        response.render('alert', {error: 'Please enter Username and Password!'});
-        // response.send('Please enter Username and Password!');
+        response.render('alert', {error: '이름과 비밀번호를 입력해 주세요.'});
         response.end();
     }
 
@@ -71,7 +71,7 @@ app.post('/login', function(request, response) {
 
 app.get('/register', function(request, response) {
     if(request.session.loggedin == true) {
-        response.render('alert', {error: 'You are already logged in as ' + request.session.username});
+        response.render('alert', {error: '현재 ' + request.session.username + ' 로 로그인되어 있습니다.'});
     }
     else {
         response.sendFile(path.join(__dirname + '/my/register.html'));
@@ -83,8 +83,7 @@ app.post('/register', function(request, response) {
     var password = request.body.password;
     var password2 = request.body.password2;
     if(password != password2) {
-        response.render('alert', {error: 'Passwords does not match!'});
-        // response.send('Passwords does not match!');
+        response.render('alert', {error: '두 비밀번호가 일치하지 않습니다.'});
         response.end();
     }
     else if(username && password) {
@@ -100,26 +99,24 @@ app.post('/register', function(request, response) {
                         console.log(data);
                     }
                 });
-                response.render('alert2', {message: 'Registered Successfully!'});
-                // response.send(username + 'Registered Successfully! <br> <a href = "/">Return</a>');
+                response.render('alert2', {message: '성공적으로 등록되었습니다.'});
             }
             else {
-                // response.send(username + 'Already exists! <br><a href = "/">Return</a>');
-                response.render('alert', {error: username + 'Already exists!'});
+                response.render('alert', {error: username + '은 이미 가입된 이름입니다.'});
             }
         response.end();
         });
     }
     else {
         console.log(username, password);
-        response.render('alert', {error: 'Please enter User Information!'});
+        response.render('alert', {error: '정보를 모두 기입해주세요.'});
         response.end();
     }
 });
 
 app.get('/logout', function(request, response) {
     if(request.session.loggedin != true) {
-        response.render('alert', {error: 'You are not logged in!'});
+        response.render('alert', {error: '로그인되지 않았습니다.'});
     }
     else {
         request.session.loggedin = false;
@@ -127,6 +124,42 @@ app.get('/logout', function(request, response) {
         response.end();
     }
 });
+
+app.get('/choicer', function(request, response) {
+    response.sendFile(path.join(__dirname + '/public/choicer.html'));
+});
+
+app.post('/mychoicer', function(request, response) {
+    if(request.session.loggedin == true) {
+        var username = request.session.username;
+    }
+    else {
+        var username = 'anonymous';
+    }
+    var charname = request.body.data;
+    console.log('charname : ', charname);
+    connection.query('INSERT INTO coffees (username, coffee) VALUES(?,?)', [username, charname], function(error, data) {
+        if(error) {
+            console.log(error);
+        }
+        else {
+            console.log(data);
+        }
+    });
+    response.render('alert2', {message: '오늘 마실 커피를 결정했습니다.'});
+    response.end();
+});
+
+app.get('/list', function (request, response) { 
+    fs.readFile(__dirname + '/my/list.html', 'utf-8', function (error, data) {
+        connection.query('select * from coffees;', function (error, results) {
+            response.send(ejs.render(data, {
+                data: results
+            }));
+        });
+    });
+});
+
 
 app.listen(3000, function() {
     console.log('Server Running at localhost:3000');
