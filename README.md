@@ -65,8 +65,6 @@ Function Cost 기능점수 계산해서 넣기?
 
 # 7주차
 
-## 12/09
-
 git repository cleanup. 
 
 mysql - 웹 연결을 최우선시해, 특히 유저 id와 coffee_id, count 의 query 형태 구현에 집중
@@ -104,3 +102,5 @@ select coffeeid from coffees where userid = 1;
 select count(*) from coffees where userid = 1;
 ```
 으로 userid 1 인 사람의 총 쿼리 횟수를 불러올 수 있음.
+
+12/07, 12/12, 12/14 많은 시간을 투자해 SQL 불러오기 및 랜덤룰렛에 적용까지 완료함.
