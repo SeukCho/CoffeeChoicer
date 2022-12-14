@@ -120,14 +120,29 @@ app.get('/logout', function(request, response) {
     }
     else {
         request.session.loggedin = false;
-        response.render('alert2', {message: 'Successfully Logged out.'});
+        request.session.username = '';
+        response.render('alert2', {message: '로그아웃 되었습니다.'});
         response.end();
     }
 });
 
 app.get('/choicer', function(request, response) {
-    response.sendFile(path.join(__dirname + '/public/choicer.html'));
+    response.sendFile(path.join(__dirname + '/public/choicer.html')); 
 });
+
+app.get('/getchoice', function(request, response) {
+    var username;
+    if(request.session.loggedin != true) {
+        username = '';
+    }
+    else {
+        username = request.session.username;
+    }
+    connection.query('select * from coffees where username = ?', [username], function(error, results, fields) {
+        if(error) throw error;
+        response.send(results);
+    })
+})
 
 app.post('/mychoicer', function(request, response) {
     if(request.session.loggedin == true) {
@@ -146,19 +161,24 @@ app.post('/mychoicer', function(request, response) {
             console.log(data);
         }
     });
-
 });
 
 app.get('/list', function (request, response) { 
     fs.readFile(__dirname + '/my/list.html', 'utf-8', function (error, data) {
-        connection.query('select * from coffees;', function (error, results) {
+        var username;
+        if(request.session.loggedin == true) {
+            username = request.session.username;
+        }
+        else {
+            username = 'anonymous';
+        }
+        connection.query('select * from coffees where username = ?', [username], function (error, results) {
             response.send(ejs.render(data, {
                 data: results
             }));
         });
     });
 });
-
 
 app.listen(3000, function() {
     console.log('Server Running at localhost:3000');
